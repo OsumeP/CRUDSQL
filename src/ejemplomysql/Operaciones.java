@@ -16,19 +16,17 @@ public class Operaciones {
     public static void conectarBaseDatos() {
         con = null;
         try {
-            Class.forName(driver);
             con = DriverManager.getConnection(url, user, pass);
             if (con != null) {
                 System.out.println("Conexión exitosa");
+                Operaciones operacion = new Operaciones();
+
+                operacion.guardar(con);
+
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             System.out.println("Conexión no exitosa");
         }
-
-        Operaciones operacion = new Operaciones();
-
-        operacion.guardar(con);
-
     }
     final String tabla = "estudiante";
 
@@ -54,5 +52,3 @@ public class Operaciones {
     }
 
 }
-
-
